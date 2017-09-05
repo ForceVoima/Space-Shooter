@@ -1,3 +1,5 @@
-*.sln
 Space Shooter/Library/
+Space Shooter/Temp/
+*.sln
+*.csproj
 Space Shooter/.vs/
