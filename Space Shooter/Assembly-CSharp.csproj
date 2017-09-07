@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Code\ColorChanger.cs" />
      <Compile Include="Assets\Code\PlayerSpaceShip.cs" />
+     <Compile Include="Assets\Code\SpaceShipBase.cs" />
      <Compile Include="Assets\Code\TransformExample.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
