@@ -9,11 +9,14 @@ namespace SpaceShooter
 		protected override void Move ()
 		{
 			Vector3 inputVector = getInputVector ();
-			Vector2 movementVector = inputVector * speed * (-1);
+			Vector2 movementVector = inputVector * Speed * (-1);
 			transform.Translate(movementVector * Time.deltaTime);
-		}
 
-        public float speed = 3f;
+			// Counter-clockwise
+			// transform.Rotate (Vector3.forward * Time.deltaTime * 10f);
+			// Clockwise
+			// transform.Rotate (Vector3.back * Time.deltaTime * 10f);
+		}
 		public const string horizontalAxis = "Horizontal";
 		public const string verticalAxis = "Vertical";
 

@@ -1,13 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\LevelController.cs">
+    <Files>
+      <File FileName="Assets\Code\PlayerSpaceShip.cs" Line="1" Column="1" />
+      <File FileName="Assets\Code\EnemySpaceShip.cs" Line="31" Column="7" />
+      <File FileName="Assets\Code\Spawner.cs" Line="19" Column="2" />
+      <File FileName="Assets\Code\LevelController.cs" Line="34" Column="6" NotebookId="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Space Shooter" expanded="True">
             <Node name="Assembly-CSharp" expanded="True">
               <Node name="Code" expanded="True">
-                <Node name="PlayerSpaceShip.cs" selected="True" />
+                <Node name="LevelController.cs" selected="True" />
               </Node>
             </Node>
           </Node>
