@@ -17,8 +17,20 @@ namespace SpaceShooter
 			// Clockwise
 			// transform.Rotate (Vector3.back * Time.deltaTime * 10f);
 		}
+
 		public const string horizontalAxis = "Horizontal";
 		public const string verticalAxis = "Vertical";
+		public const string fireButtonName = "Fire1";
+
+		protected override void Update ()
+		{
+			base.Update ();
+
+			if (Input.GetButton(fireButtonName) )
+			{
+				Shoot();
+			}
+		}
 
         private Vector3 getInputVector()
         {
