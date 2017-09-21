@@ -28,8 +28,6 @@ namespace SpaceShooter
 
 		protected override void Move()
 		{
-			// throw new System.NotImplementedException ("Ei implementoitu");
-
 			if (_movementTargets == null || _movementTargets.Length == 0)
 			{
 				return;
@@ -53,5 +51,18 @@ namespace SpaceShooter
 				}
 			}
 		}
-	}
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            // Destroy projectile
+            Destroy(other.gameObject);
+
+            var health = gameObject.GetComponent<Health>();
+
+            if (health != null)
+            {
+                health.DecreaseHealth(1);
+            }
+        }
+    }
 }

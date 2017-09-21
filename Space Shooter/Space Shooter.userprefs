@@ -1,16 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Code\Projectile.cs">
-    <Files>
-      <File FileName="Assets\Code\PlayerSpaceShip.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\EnemySpaceShip.cs" Line="41" Column="62" />
-      <File FileName="Assets\Code\SpaceShipBase.cs" Line="24" Column="12" />
-      <File FileName="Assets\Code\Spawner.cs" Line="19" Column="2" />
-      <File FileName="Assets\Code\TransformExample.cs" Line="1" Column="1" />
-      <File FileName="Assets\Code\Projectile.cs" Line="9" Column="2" />
-      <File FileName="Assets\Code\LevelController.cs" Line="34" Column="6" NotebookId="1" />
-    </Files>
-  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
