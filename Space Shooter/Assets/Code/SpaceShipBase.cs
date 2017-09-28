@@ -6,6 +6,14 @@ namespace SpaceShooter
     [RequireComponent(typeof(Health))]
 	public abstract class SpaceShipBase : MonoBehaviour, IDamageReciever
 	{
+        public enum Type
+        {
+            Player,
+            Enemy
+        }
+
+        public abstract Type UnitType { get; }
+
 		[SerializeField]
 		private float _speed = 3f;
 
@@ -76,6 +84,11 @@ namespace SpaceShooter
         protected virtual void Die()
         {
             Destroy(gameObject);
+        }
+
+        protected Projectile GetPooledProjectile()
+        {
+            return LevelController.Current.GetProjectile(UnitType);
         }
     }
 }

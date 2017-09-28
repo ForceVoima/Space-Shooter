@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,19 @@ namespace SpaceShooter
 				return _movementTargets [_currentMovementTargetIndex].transform;
 			}
 		}
+
+        public override Type UnitType
+        {
+            get { return Type.Enemy; }
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+
+            // Cooldown is implemented by the weapon.
+            Shoot();
+        }
 
 		public void setMovementTargets(GameObject[] targets)
 		{

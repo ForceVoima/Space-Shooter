@@ -24,6 +24,17 @@ namespace SpaceShooter
 
         // Number of enemies
         private int _enemyCount = 0;
+
+        [SerializeField]
+        GameObjectPool _playerProjectilePool;
+
+        [SerializeField]
+        GameObjectPool _enemyProjectilePool;
+
+        public static LevelController Current
+        {
+            get; private set;
+        }
 		
 		protected void Awake()
 		{
@@ -48,6 +59,15 @@ namespace SpaceShooter
 			}
 
             // SpawnEnemyUnit();
+
+            if (Current == null)
+            {
+                Current = this;
+            }
+            else
+            {
+                Debug.LogError("There are multiple level controllers");
+            }
 		}
 
         protected void Start()
@@ -93,5 +113,42 @@ namespace SpaceShooter
 
 			return enemyShip;
 		}
-	}
+
+        public Projectile GetProjectile(SpaceShipBase.Type type)
+        {
+            GameObject result = null;
+
+            if (type == SpaceShipBase.Type.Player)
+            {
+                result = _playerProjectilePool.GetPooledObject();
+            }
+            else if (type == SpaceShipBase.Type.Enemy)
+            {
+                result = _enemyProjectilePool.GetPooledObject();
+            }
+
+            if (result != null)
+            {
+                return result.GetComponent<Projectile>();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool ReturnProjectile(SpaceShipBase.Type type, Projectile projectile)
+        {
+            if (type == SpaceShipBase.Type.Player)
+            {
+                return _playerProjectilePool.ReturnToPool(projectile.gameObject);
+            }
+            else if (type == SpaceShipBase.Type.Enemy)
+            {
+                return _enemyProjectilePool.ReturnToPool(projectile.gameObject);
+            }
+
+            return false;
+        }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +23,11 @@ namespace SpaceShooter
 		public const string verticalAxis = "Vertical";
 		public const string fireButtonName = "Fire1";
 
-		protected override void Update ()
+        public override Type UnitType {
+            get { return Type.Player; }
+        }
+
+        protected override void Update ()
 		{
 			base.Update ();
 
