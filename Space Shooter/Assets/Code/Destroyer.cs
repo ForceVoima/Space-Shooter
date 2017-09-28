@@ -6,6 +6,7 @@ namespace SpaceShooter
 	{
 		void OnTriggerEnter2D(Collider2D other)
 		{
+            // Destroy the object regardless
 			Destroy (other.gameObject);
 		}
 	}

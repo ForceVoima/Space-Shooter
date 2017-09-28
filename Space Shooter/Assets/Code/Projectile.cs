@@ -2,7 +2,9 @@
 
 namespace SpaceShooter
 {
-	public class Projectile : MonoBehaviour, IDamageProvider
+    [RequireComponent(typeof(Rigidbody2D))]
+
+    public class Projectile : MonoBehaviour, IDamageProvider
 	{
 		[SerializeField]
 		private int _damage;
@@ -48,5 +50,25 @@ namespace SpaceShooter
 		{
 			return _damage;
 		}
-	}
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            //var health = other.gameObject.GetComponent<Health>();
+
+            //if (health != null)
+            //{
+            //    health.DecreaseHealth( GetDamage() );
+            //}
+
+            IDamageReciever damageReciever = other.GetComponent<IDamageReciever>();
+
+            if (damageReciever != null)
+            {
+                damageReciever.TakeDamage(GetDamage());
+
+                // Destroy projectile only if damage was provided!
+                Destroy(gameObject);
+            }
+        }
+    }
 }

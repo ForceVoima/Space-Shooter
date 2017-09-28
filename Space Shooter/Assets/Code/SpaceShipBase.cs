@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 namespace SpaceShooter
 {
-	public abstract class SpaceShipBase : MonoBehaviour
+    [RequireComponent(typeof(Health))]
+	public abstract class SpaceShipBase : MonoBehaviour, IDamageReciever
 	{
 		[SerializeField]
 		private float _speed = 3f;
 
-		private Weapon[] _weapons;
+        private Weapon[] _weapons;
 
 		public float Speed
 		{
@@ -20,12 +20,22 @@ namespace SpaceShooter
 		protected virtual void Awake()
 		{
 			_weapons = GetComponentsInChildren<Weapon> (includeInactive:true);
+
+            Health = GetComponent<IHealth>();
+
+            if (Health == null)
+            {
+                Debug.LogError(gameObject + " Health component not found!");
+            }
 		}
 
 		public Weapon[] Weapons
 		{
 			get { return _weapons; }
 		}
+
+        // Autoproperty. Backing fields are generated automatically.
+        public IHealth Health { get; protected set; }
 
 		protected void Shoot()
 		{
@@ -52,5 +62,20 @@ namespace SpaceShooter
 				Debug.Log(exception.Message);
 			}
 		}
-	}
+
+        public void TakeDamage(int amount)
+        {
+            Health.DecreaseHealth(amount);
+
+            if (Health.IsDead)
+            {
+                Die();
+            }
+        }
+
+        protected virtual void Die()
+        {
+            Destroy(gameObject);
+        }
+    }
 }

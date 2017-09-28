@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace SpaceShooter
 {
@@ -9,6 +10,20 @@ namespace SpaceShooter
 
 		[SerializeField]
 		private GameObject[] _enemyMovementTargets;
+
+        // How often to spawn enemies
+        [SerializeField]
+        private float _spawnInterval = 1f;
+
+        [SerializeField, Tooltip("Time before first spawn.")]
+        private float _waitToSpawn = 1f;
+
+        // Maximum number of enemies to spawn
+        [SerializeField]
+        private float _maxEnemyUnitsToSpawn = 10;
+
+        // Number of enemies
+        private int _enemyCount = 0;
 		
 		protected void Awake()
 		{
@@ -31,9 +46,40 @@ namespace SpaceShooter
 
 				// _enemySpawner = GameObject.Find("EnemySpawner");
 			}
-			 	
-			SpawnEnemyUnit();
+
+            // SpawnEnemyUnit();
 		}
+
+        protected void Start()
+        {
+            // Start a new coroutine in the same thread
+            StartCoroutine(SpawnRoutine());
+        }
+
+        private IEnumerator SpawnRoutine()
+        {
+            // Initial grace period:
+            yield return new WaitForSeconds(_waitToSpawn);
+
+            while (_enemyCount < _maxEnemyUnitsToSpawn)
+            {
+                EnemySpaceShip enemy = SpawnEnemyUnit();
+
+                if (enemy != null)
+                {
+                    _enemyCount++;
+                }
+                else
+                {
+                    Debug.LogError("Could not spawn enemy");
+
+                    // Stop the execution
+                    yield break;
+                }
+
+                yield return new WaitForSeconds(_spawnInterval);
+            }
+        }
 
 		private EnemySpaceShip SpawnEnemyUnit()
 		{

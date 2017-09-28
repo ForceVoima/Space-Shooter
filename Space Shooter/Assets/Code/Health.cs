@@ -15,6 +15,18 @@ namespace SpaceShooter
 
         private int _currentHeath;
 
+        public int CurrentHealth
+        {
+            get
+            {
+                return _currentHeath;
+            }
+            private set
+            {
+                _currentHeath = Mathf.Clamp(value, _minHealth, _maxHealth);
+            }
+        }
+
         void Awake()
         {
             _currentHeath = _startingHeath;
@@ -37,17 +49,17 @@ namespace SpaceShooter
             }
         }
 
-        public int CurrentHealth
+        public bool IsDead
         {
             get
             {
-                return _currentHeath;
+                return (CurrentHealth <= _minHealth);
             }
         }
 
         public void DecreaseHealth(int amount)
         {
-            _currentHeath -= amount;
+            CurrentHealth -= amount;
 
             if (CurrentHealth <= _minHealth)
             {
@@ -57,7 +69,7 @@ namespace SpaceShooter
 
         public void IncreaseHealth(int amount)
         {
-            _currentHeath += amount;
+            CurrentHealth += amount;
 
             if (CurrentHealth > _maxHealth)
             {
