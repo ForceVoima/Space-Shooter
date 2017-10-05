@@ -16,6 +16,8 @@ namespace SpaceShooter
 		private Vector2 _direction;
 		private bool _isLaunched = false;
 
+        Weapon _weapon;
+
 		protected virtual void Awake()
 		{
 			_rigidbody = GetComponent<Rigidbody2D> ();
@@ -26,8 +28,10 @@ namespace SpaceShooter
 			}
 		}
 
-		public void Launch(Vector2 direction)
+        public void Launch(Weapon weapon, Vector2 direction)
 		{
+            _weapon = weapon;
+
 			_direction = direction;
 			_isLaunched = true;
 		}
@@ -66,7 +70,16 @@ namespace SpaceShooter
             {
                 damageReciever.TakeDamage(GetDamage());
 
-                // Destroy projectile only if damage was provided!
+                // TODO: Return projectile back to pool.
+                // throw new System.NotImplementedException("Return projectile to pool");
+
+                // Destroy projectile only if damage was provided
+                // Destroy(gameObject);
+            }
+
+            if (_weapon.DisposeProjectile(this) == false)
+            {
+                Debug.LogError("Projectile couldn't be returned to pool!");
                 Destroy(gameObject);
             }
         }

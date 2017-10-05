@@ -129,7 +129,15 @@ namespace SpaceShooter
 
             if (result != null)
             {
-                return result.GetComponent<Projectile>();
+                Projectile projectile = result.GetComponent<Projectile>();
+
+                if (projectile == null)
+                {
+                    Debug.LogError("Projectile component could not be found" 
+                        + "from the object fetched from the pool");
+                }
+
+                return projectile;
             }
             else
             {

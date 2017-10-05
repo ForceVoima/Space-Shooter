@@ -609,8 +609,8 @@ MonoBehaviour:
   _spawnInterval: 1
   _waitToSpawn: 1
   _maxEnemyUnitsToSpawn: 5
-  _playerProjectilePool: {fileID: 0}
-  _enemyProjectilePool: {fileID: 0}
+  _playerProjectilePool: {fileID: 282046384}
+  _enemyProjectilePool: {fileID: 1578070250}
 --- !u!4 &2136088637
 Transform:
   m_ObjectHideFlags: 0

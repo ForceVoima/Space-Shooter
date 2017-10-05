@@ -13,6 +13,13 @@ namespace SpaceShooter
 		private float _timeSinceShot = 0.0f;
 		private bool _isInCooldown = false;
 
+        private SpaceShipBase _owner;
+
+        public void Init(SpaceShipBase owner)
+        {
+            _owner = owner;
+        }
+
 		public bool Shoot()
 		{
 			if ( _isInCooldown )
@@ -20,12 +27,24 @@ namespace SpaceShooter
 				return false;
 			}
 
-			// Instantiate projectile
-			Projectile projectile =
-				Instantiate(_projectilePrefab, transform.position, transform.rotation);
+            // Instantiate projectile
+            // Projectile projectile =
+            // Instantiate(_projectilePrefab, transform.position, transform.rotation);
+            //projectile = LevelController.Current.GetProjectile(this.transform.parent. );
+            // SpaceShipBase parent = this.GetComponentInParent<SpaceShipBase>();
+            // parent.GetPooledProjectile();
+            //projectile = this.transform.parent
+            Projectile projectile = LevelController.Current.GetProjectile(_owner.UnitType);
 
-			// Up relative to the Weapon
-			projectile.Launch(transform.up);
+            if (projectile != null)
+            {
+                // projectile.gameObject.SetActive(true);
+                projectile.transform.position = transform.position;
+                projectile.transform.rotation = transform.rotation;
+                projectile.Launch(this, transform.up);
+            }
+
+            // Up relative to the Weapon
 			// Vector2.up  is absolute up
 
 			_timeSinceShot = 0f;
@@ -33,6 +52,11 @@ namespace SpaceShooter
 
 			return true;
 		}
+
+        public bool DisposeProjectile(Projectile projectile)
+        {
+            return LevelController.Current.ReturnProjectile(_owner.UnitType, projectile);
+        }
 
 		void Update()
 		{
