@@ -40,6 +40,8 @@ namespace SpaceShooter
                 Deactivate(go);
             }
 
+            _pool.Add(go);
+
             return go;
         }
 

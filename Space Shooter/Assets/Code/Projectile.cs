@@ -16,7 +16,8 @@ namespace SpaceShooter
 		private Vector2 _direction;
 		private bool _isLaunched = false;
 
-        Weapon _weapon;
+        private Weapon _weapon;
+        private AudioSource _audio;
 
 		protected virtual void Awake()
 		{
@@ -26,6 +27,8 @@ namespace SpaceShooter
 			{
 				Debug.LogError ("No RigidBody2D component found for projectile.");
 			}
+
+            _audio = GetComponent<AudioSource>();
 		}
 
         public void Launch(Weapon weapon, Vector2 direction)
@@ -34,6 +37,8 @@ namespace SpaceShooter
 
 			_direction = direction;
 			_isLaunched = true;
+
+            _audio.Play();
 		}
 
 		protected void FixedUpdate()
