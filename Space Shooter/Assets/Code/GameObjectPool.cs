@@ -29,7 +29,8 @@ namespace SpaceShooter
 
         private GameObject AddObject(bool isActive = false)
         {
-            GameObject go = Instantiate(_objectPrefab);
+            // Add as a child of the parent.
+            GameObject go = Instantiate(_objectPrefab, transform);
 
             if (isActive)
             {
