@@ -131,6 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3.4
+  _lives: 3
+  _invulnerableTime: 3
+  _blinkingPeriod: 0.1
 --- !u!114 &114762540962229966
 MonoBehaviour:
   m_ObjectHideFlags: 1

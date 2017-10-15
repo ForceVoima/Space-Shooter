@@ -37,7 +37,6 @@ namespace SpaceShooter
             if (transform.position.y < -20f)
             {
                 float _moveHeight = (_sprite.bounds.max.y - _sprite.bounds.min.y) * _yScale * 2f;
-                Debug.Log("Moveheight = " + _moveHeight);
 
                 transform.Translate(Vector3.up * _moveHeight);
             }

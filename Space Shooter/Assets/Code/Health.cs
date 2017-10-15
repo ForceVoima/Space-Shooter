@@ -60,11 +60,6 @@ namespace SpaceShooter
         public void DecreaseHealth(int amount)
         {
             CurrentHealth -= amount;
-
-            if (CurrentHealth <= _minHealth)
-            {
-                Destroy(gameObject);
-            }
         }
 
         public void IncreaseHealth(int amount)

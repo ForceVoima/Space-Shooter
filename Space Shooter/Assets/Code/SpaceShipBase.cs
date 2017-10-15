@@ -76,7 +76,8 @@ namespace SpaceShooter
 			}
 		}
 
-        public void TakeDamage(int amount)
+        // Taking damage can be overriden to implement invulnerability
+        public virtual void TakeDamage(int amount)
         {
             Health.DecreaseHealth(amount);
 

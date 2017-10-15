@@ -10,9 +10,11 @@ namespace SpaceShooter
 
 		public GameObject Spawn()
 		{
+            // Spawn new enemies as children to Spawner
 			GameObject spawnObject = Instantiate (_prefabToSpawn,
 				transform.position,
-				transform.rotation);
+				transform.rotation,
+                transform);
 			return spawnObject;
 		}
 	}
